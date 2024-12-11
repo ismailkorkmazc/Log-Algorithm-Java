@@ -1,0 +1,45 @@
+import java.util.Random;
+
+public class LogAlgorithm {
+    public static void main(String[] args) {
+        // Example configuration for the log-based algorithm
+        int pages = 10; // Increased number of pages to process
+        int entriesPerPage = 5000; // Increased entries per page to extend the computation
+
+        for (int page = 1; page <= pages; page++) {
+            System.out.println("\n--- Start processing page " + page + " ---\n");
+            for (int entry = 1; entry <= entriesPerPage; entry++) {
+                int currentEntry = ((page - 1) * entriesPerPage) + entry;
+                System.out.println("Page " + page + " | Entry " + entry + " | " + processEntry(currentEntry));
+            }
+            System.out.println("\n--- End processing page " + page + " ---\n");
+        }
+        System.out.println("\nAll pages processed successfully.");
+    }
+
+    /**
+     * Processes a single entry and performs computations.
+     * @param entryNumber The entry number.
+     * @return The result of the computation as a string.
+     */
+    private static String processEntry(int entryNumber) {
+        // Simulate data scanning and computation
+        Random random = new Random();
+        double data = random.nextDouble() * entryNumber;
+        double logComponent = Math.log(data + 1);
+        double sinComponent = Math.sin(entryNumber);
+        double sqrtComponent = Math.pow(entryNumber, 0.5);
+
+        // Detailed computation steps
+        StringBuilder resultBuilder = new StringBuilder();
+        resultBuilder.append(String.format("Data generated: %.5f", data));
+        resultBuilder.append(String.format(", Log component: %.5f", logComponent));
+        resultBuilder.append(String.format(", Sin component: %.5f", sinComponent));
+        resultBuilder.append(String.format(", Sqrt component: %.5f", sqrtComponent));
+
+        double finalResult = logComponent * sinComponent + sqrtComponent;
+        resultBuilder.append(String.format(", Final computed value: %.5f", finalResult));
+
+        return resultBuilder.toString();
+    }
+}
